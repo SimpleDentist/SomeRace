@@ -24,7 +24,7 @@ def car_and_player_select():
     pygame.display.set_caption("Race")
 
     clock = pygame.time.Clock()
-    FPS = 30
+    FPS = 120
 
     bg = pygame.image.load('bridge-cityscape-pixel-art.jpg')
 
@@ -383,6 +383,7 @@ def leaderboard():
     con = sqlite3.connect("LeaderboardDataBase.db")
     cur = con.cursor()
     result = cur.execute('''SELECT * FROM Leaderboard ORDER BY Score desc''').fetchall()
+    cur.close()
 
     while True:
         for event in pygame.event.get():
@@ -399,10 +400,8 @@ def leaderboard():
         display.blit(bg, (0, 0))
         display.blit(text_quit, (0, 0))
 
-        if len(result) <= 5:
-
-            for i in range(len(result)):
-                display.blit(text_format("{}.".format(i + 1) + result[i][0] + " - " + str(result[i][1]),
+        for i in range(5):
+            display.blit(text_format("{}.".format(i + 1) + result[i][0] + " - " + str(result[i][1]),
                                          font, 50, (0, 0, 0)), (100, 120 + 65 * i))
         pygame.display.update()
         clock.tick(FPS)
