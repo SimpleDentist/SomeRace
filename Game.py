@@ -403,9 +403,9 @@ def leaderboard():
 	        for i in range(5):
 	            display.blit(text_format("{}.".format(i + 1) + result[i][0] + " - " + str(result[i][1]),
 	                                         font, 50, (0, 0, 0)), (100, 120 + 65 * i))
-	        else:
-	        	for i in range(len(result)):
-	        		display.blit(text_format("{}.".format(i + 1) + result[i][0] + " - " + str(result[i][1]),
+	else:
+		for i in range(len(result)):
+			display.blit(text_format("{}.".format(i + 1) + result[i][0] + " - " + str(result[i][1]),
 	                                         font, 50, (0, 0, 0)), (100, 120 + 65 * i))
         pygame.display.update()
         clock.tick(FPS)
